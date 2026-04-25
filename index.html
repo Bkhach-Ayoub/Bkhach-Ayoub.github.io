@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayoub Bkhach | Engineering Student</title>
+  <meta name="description" content="Portfolio of Ayoub Bkhach — Engineering student at ENSIMAG, Grenoble INP. Computer Science & Applied Mathematics, Operations Research track." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #f4623a;
+      --primary-dark: #e3471d;
+      --dark: #212529;
+      --darker: #1a1d20;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.2; }
+    a { color: var(--primary); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--primary-dark); }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 16px 0; background: transparent;
+      z-index: 1000; transition: background .3s, padding .3s, box-shadow .3s;
+    }
+    .navbar.scrolled {
+      background: var(--darker); padding: 12px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .navbar-brand {
+      color: var(--white); font-family: 'Montserrat', sans-serif;
+      font-size: 24px; font-weight: 700; letter-spacing: 0.05em;
+    }
+    .navbar-brand:hover { color: var(--primary); }
+    .nav-toggle {
+      display: none; background: var(--primary); border: none; color: var(--white);
+      padding: 8px 14px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer; border-radius: 4px;
+    }
+    .nav-menu { display: flex; list-style: none; gap: 4px; }
+    .nav-menu a {
+      display: block; color: var(--white); padding: 10px 16px;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase;
+      border-radius: 4px; transition: background .2s;
+    }
+    .nav-menu a:hover { background: var(--primary); color: var(--white); }
+
+    /* Hero */
+    .masthead {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 100px 24px 60px;
+      background:
+        linear-gradient(135deg, rgba(33,37,41,0.92) 0%, rgba(26,29,32,0.96) 100%),
+        radial-gradient(circle at 25% 30%, rgba(244,98,58,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 75% 70%, rgba(244,98,58,0.12) 0%, transparent 50%),
+        var(--darker);
+      color: var(--white); position: relative; overflow: hidden;
+    }
+    .masthead::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px; pointer-events: none;
+    }
+    .masthead-content { position: relative; z-index: 1; max-width: 720px; }
+    .masthead h1 { font-size: 72px; margin-bottom: 16px; letter-spacing: 0.02em; }
+    .masthead .lead {
+      font-family: 'Lato', sans-serif; font-size: 18px; font-weight: 300;
+      max-width: 600px; margin: 0 auto 32px; color: rgba(255,255,255,0.9);
+    }
+    .masthead .lead a { color: var(--primary); font-weight: 700; }
+
+    .btn {
+      display: inline-block; background: var(--primary); color: var(--white);
+      padding: 14px 36px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 6px; border: none; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .btn:hover { background: var(--primary-dark); color: var(--white); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; border: 2px solid var(--primary);
+      color: var(--primary); padding: 12px 34px; margin-left: 12px;
+    }
+    .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+    .social-icons { margin-top: 40px; display: flex; justify-content: center; gap: 14px; }
+    .social-icons a {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700;
+      transition: background .2s, transform .2s;
+    }
+    .social-icons a:hover { background: var(--primary); color: var(--white); transform: translateY(-3px); }
+
+    /* Sections */
+    section { padding: 90px 0; }
+    .section-light { background: var(--light); }
+    .section-dark { background: var(--darker); color: var(--white); }
+    .section-dark h2, .section-dark h3 { color: var(--white); }
+    .section-title { text-align: center; font-size: 36px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .section-divider { width: 60px; height: 4px; background: var(--primary); margin: 0 auto 50px; border-radius: 2px; }
+
+    /* Projects */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .project-card {
+      background: var(--white); border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+      transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
+    .project-banner {
+      height: 180px; display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-family: 'Montserrat', sans-serif;
+      font-size: 56px; font-weight: 700; letter-spacing: 0.05em;
+      position: relative; overflow: hidden;
+    }
+    .project-banner::after {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .banner-1 { background: linear-gradient(135deg, #2c3e50, #4ca1af); }
+    .banner-2 { background: linear-gradient(135deg, #c33764, #1d2671); }
+    .banner-3 { background: linear-gradient(135deg, #f4623a, #c33764); }
+    .banner-4 { background: linear-gradient(135deg, #232526, #414345); }
+    .banner-5 { background: linear-gradient(135deg, #1d976c, #93f9b9); }
+
+    .project-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .project-card h3 { font-size: 19px; margin-bottom: 6px; color: var(--dark); }
+    .project-meta { font-size: 12px; color: var(--gray); font-style: italic; margin-bottom: 12px; }
+    .project-body p { font-size: 14.5px; color: var(--dark); margin-bottom: 16px; flex: 1; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tech-pill {
+      font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 4px 10px; background: var(--light); color: var(--gray);
+      border-radius: 12px;
+    }
+    .project-link {
+      font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary);
+    }
+
+    /* Skills — icon grid */
+    .skills-grid {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 36px 44px; max-width: 900px; margin: 0 auto;
+    }
+    .skill-icon-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; transition: transform .2s;
+    }
+    .skill-icon-item:hover { transform: translateY(-6px); }
+    .skill-icon-item .iconify { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
+    .skill-icon-item span:last-child {
+      font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.8); letter-spacing: 0.04em; text-align: center;
+    }
+
+    /* Education */
+    .timeline-item {
+      max-width: 800px; margin: 0 auto 40px; padding: 28px;
+      background: var(--white); border-radius: 8px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+      border-left: 4px solid var(--primary);
+    }
+    .timeline-item h4 { font-size: 13px; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .timeline-item h3 { font-size: 22px; margin-bottom: 4px; color: var(--dark); }
+    .timeline-sub { font-size: 15px; color: var(--gray); margin-bottom: 14px; font-style: italic; }
+    .timeline-item ul { list-style: none; padding-left: 0; }
+    .timeline-item li {
+      padding-left: 20px; position: relative; margin-bottom: 8px;
+      color: var(--dark); font-size: 15px;
+    }
+    .timeline-item li::before { content: '▹'; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+
+    /* Contact */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px; max-width: 900px; margin: 0 auto; text-align: center;
+    }
+    .contact-item { padding: 28px 20px; }
+    .contact-icon {
+      width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%;
+      background: var(--primary); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    }
+    .contact-item h4 { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
+    .contact-item a, .contact-item p { color: rgba(255,255,255,0.75); font-size: 15px; word-break: break-word; }
+    .contact-item a:hover { color: var(--primary); }
+
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.55);
+      padding: 24px 0; text-align: center; font-size: 13px; letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--darker); flex-direction: column; padding: 16px;
+      }
+      .nav-menu.open { display: flex; }
+      .nav-menu a { padding: 12px 16px; }
+      .masthead h1 { font-size: 48px; }
+      .masthead .lead { font-size: 16px; }
+      .btn-outline { margin-left: 0; margin-top: 12px; }
+      .section-title { font-size: 28px; }
+      section { padding: 70px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="navbar-brand">AYOUB BKHACH</a>
+      <button class="nav-toggle" id="navToggle">Menu ☰</button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="masthead" id="about">
+    <div class="masthead-content">
+      <h1>Hi, I'm Ayoub</h1>
+      <p class="lead">
+        Engineering student at <a href="https://ensimag.grenoble-inp.fr/en" target="_blank" rel="noopener">ENSIMAG, Grenoble INP</a>, specialized in Computer Science &amp; Applied Mathematics.<br />
+        Currently looking for an 8–12 week Assistant Engineer internship.
+      </p>
+      <div>
+        <a href="#projects" class="btn">Projects</a>
+        <a href="https://github.com/Bkhach-Ayoub" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/bkhach-ayoub" target="_blank" rel="noopener" title="LinkedIn">in</a>
+        <a href="https://github.com/Bkhach-Ayoub" target="_blank" rel="noopener" title="GitHub">gh</a>
+        <a href="mailto:ayoub.bkhach1@grenoble-inp.org" title="Email">@</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section-light">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <div class="section-divider"></div>
+
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-banner banner-1">3D</div>
+          <div class="project-body">
+            <h3>3D Printer Slicer</h3>
+            <p class="project-meta">Algorithms project — ENSIMAG</p>
+            <p>Slicing engine reading binary STL files, reconstructing polygons with holes via inclusion trees, and computing Eulerian cycles on a connectivity graph to generate the printer nozzle path. Includes a terminal animation of the trajectory.</p>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">Geometry</span>
+              <span class="tech-pill">Graphs</span>
+            </div>
+            <a href="#" target="_blank" rel="noopener" class="project-link">Code →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-banner banner-2">PAM</div>
+          <div class="project-body">
+            <h3>Road Accident Modeling</h3>
+            <p class="project-meta">Statistics project — ENSIMAG</p>
+            <p>Statistical analysis of the 2019 ONISR road accidents dataset: weighted severity score, stepwise linear models, k-means clustering with PCA visualization, and quasi-Poisson regression normalized by INSEE driver population.</p>
+            <div class="project-tech">
+              <span class="tech-pill">R</span>
+              <span class="tech-pill">k-means</span>
+              <span class="tech-pill">PCA</span>
+              <span class="tech-pill">GLM</span>
+            </div>
+            <a href="#" target="_blank" rel="noopener" class="project-link">Code →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-banner banner-3">CALC</div>
+          <div class="project-body">
+            <h3>Calculator with Custom Parser</h3>
+            <p class="project-meta">Theory of Languages — ENSIMAG</p>
+            <p>From-scratch calculator supporting integers, floats, scientific notation, powers, factorials and back-references. Hand-written deterministic lexer (LL(3) lookahead) and LL(1) parser with attribute grammar evaluation and error recovery.</p>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">Lexer</span>
+              <span class="tech-pill">LL(1)</span>
+            </div>
+            <a href="#" target="_blank" rel="noopener" class="project-link">Code →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-banner banner-4">OS</div>
+          <div class="project-body">
+            <h3>Mini Operating System</h3>
+            <p class="project-meta">Hardware-Software Interface — ENSIMAG</p>
+            <p>Low-level kernel built in C on an embedded RISC-V platform: terminal display, UART, timer with interrupt handling, process management, and preemptive scheduling. Validated against an automated test suite.</p>
+            <div class="project-tech">
+              <span class="tech-pill">C</span>
+              <span class="tech-pill">RISC-V</span>
+              <span class="tech-pill">Kernel</span>
+            </div>
+            <a href="#" target="_blank" rel="noopener" class="project-link">Code →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-banner banner-5">GUI</div>
+          <div class="project-body">
+            <h3>GUI Library in C</h3>
+            <p class="project-meta">Software Engineering — ENSIMAG, team of 4</p>
+            <p>Complete GUI library written in C: windows, buttons, labels, text inputs, checkboxes, with dynamic geometry and event handling. Validated by building Minesweeper, a puzzle game and 2048 on top of it.</p>
+            <div class="project-tech">
+              <span class="tech-pill">C</span>
+              <span class="tech-pill">Events</span>
+              <span class="tech-pill">Teamwork</span>
+            </div>
+            <a href="#" target="_blank" rel="noopener" class="project-link">Code →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section-dark">
+    <div class="container">
+      <h2 class="section-title">My Skills</h2>
+      <div class="section-divider"></div>
+
+      <div class="skills-grid">
+        <div class="skill-icon-item"><span class="iconify" data-icon="logos:python" data-width="80" data-height="80"></span><span>Python</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="logos:c" data-width="80" data-height="80"></span><span>C</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="logos:go" data-width="80" data-height="80"></span><span>Go</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="logos:r-lang" data-width="80" data-height="80"></span><span>R</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="vscode-icons:file-type-assembly" data-width="80" data-height="80"></span><span>RISC-V Assembly</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="logos:git-icon" data-width="80" data-height="80"></span><span>Git</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="flat-color-icons:linux" data-width="80" data-height="80"></span><span>Linux</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="vscode-icons:file-type-shell" data-width="80" data-height="80"></span><span>Bash</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="logos:visual-studio-code" data-width="80" data-height="80"></span><span>VS Code</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="logos:wireshark" data-width="80" data-height="80"></span><span>Wireshark</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="file-icons:latex" data-width="80" data-height="80"></span><span>LaTeX</span></div>
+        <div class="skill-icon-item"><span class="iconify" data-icon="vscode-icons:file-type-sql" data-width="80" data-height="80"></span><span>SQL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section-light">
+    <div class="container">
+      <h2 class="section-title">My Education</h2>
+      <div class="section-divider"></div>
+
+      <div class="timeline-item">
+        <h4>2025 — Present</h4>
+        <h3><a href="https://ensimag.grenoble-inp.fr/en" target="_blank" rel="noopener">Grenoble-INP ENSIMAG</a> | Engineer's Degree</h3>
+        <p class="timeline-sub">Computer Science &amp; Applied Mathematics — 1st year</p>
+        <ul>
+          <li>Specialization track: Operations Research &amp; Mathematical Decision-making (ROMD).</li>
+          <li>Computer Science: algorithms, data structures, operating systems, compilers, networks.</li>
+          <li>Mathematics &amp; Optimization: linear programming, convex optimization, probability &amp; statistics.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h4>2023 — 2025</h4>
+        <h3>Preparatory Classes (CPGE) — MP / MP* | Lycée Mohammed V, Casablanca</h3>
+        <p class="timeline-sub">Mathematics &amp; Physics</p>
+        <ul>
+          <li>Two-year highly selective program preparing for the competitive entrance exams to French "Grandes Écoles".</li>
+          <li>Mathematics: analysis, algebra, probability.</li>
+          <li>Physics and engineering sciences.</li>
+          <li>Computer science.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-dark">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="section-divider"></div>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">@</div>
+          <h4>Email</h4>
+          <a href="mailto:ayoub.bkhach1@grenoble-inp.org">ayoub.bkhach1@grenoble-inp.org</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">gh</div>
+          <h4>GitHub</h4>
+          <a href="https://github.com/Bkhach-Ayoub" target="_blank" rel="noopener">Ayoub Bkhach</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">in</div>
+          <h4>LinkedIn</h4>
+          <a href="https://www.linkedin.com/in/bkhach-ayoub" target="_blank" rel="noopener">Ayoub Bkhach</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Ayoub Bkhach — Built with HTML &amp; CSS
+    </div>
+  </footer>
+
+  <!-- Iconify for skill icons -->
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => menu.classList.remove('open'))
+    );
+  </script>
+
+</body>
+</html>
